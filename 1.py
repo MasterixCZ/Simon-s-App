@@ -2,6 +2,8 @@
 from tkinter import *
 from PIL import ImageTk, Image
 import playsound
+import pystray
+from pystray import MenuItem as item
 
 #ROOT
 root = Tk()
@@ -9,12 +11,28 @@ root.title("Simon's App")
 root.geometry("903x707")
 
 #DEFINICE
-simon_bg = ImageTk.PhotoImage(Image.open("Simon's_App\simon.png"))#Simon's_App\simon.png
+simon_bg = ImageTk.PhotoImage(Image.open("simon.png"))
 def WAYG():
-    playsound.playsound("Simon's_App\\WAYG.mp3")#Simon's_App\WAYG.mp3
+    playsound.playsound("WAYG.mp3")
+
 def YAG_QUIT():
-    playsound.playsound("Simon's_App\YAG.mp3")
+    playsound.playsound("YAG_QUIT.mp3")
     root.quit()
+
+def quit_window(icon, item):
+    icon.stop()
+    root.destroy()
+
+def show_window(icon, item):
+    icon.stop()
+    root.after(0, root.deiconify())
+
+def hide_window():
+    root.withdraw()
+    image=Image.open("IKONA.ico")
+    menu=(item("Odejít", quit_window), item("Nemohl bys mi ho ukázat?", show_window))
+    icon=pystray.Icon("Simon", image, "Simon is watchin' you", menu)
+    icon.run()
 
 #POZADÍ
 simon_canvas = Canvas(root)
@@ -33,5 +51,7 @@ gae_tl = Button(simon_canvas, text="Why are you gae?", command=WAYG)
 gae_tl.place(x=20,y=50)
 odejít = Button(simon_canvas, text="Odejít (Být gae)", command = YAG_QUIT)
 odejít.place(x=800,y=670)
+
+root.protocol('WM_DELETE_WINDOW', hide_window)
 
 root.mainloop()
