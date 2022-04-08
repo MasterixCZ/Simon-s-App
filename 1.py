@@ -1,5 +1,6 @@
 #PLUGINY
 from tkinter import *
+from tkinter import messagebox
 from PIL import ImageTk, Image
 import playsound
 import pystray
@@ -11,13 +12,15 @@ root.title("Simon's App")
 root.geometry("903x707")
 
 #DEFINICE
-simon_bg = ImageTk.PhotoImage(Image.open("simon.png"))
-def WAYG():
-    playsound.playsound("WAYG.mp3")
+current_bg = ImageTk.PhotoImage(Image.open("RESOURCES\simon.png"))
 
+def WAYG():
+    playsound.playsound("gaeFUCK.mp3")
+        
 def YAG_QUIT():
-    playsound.playsound("YAG_QUIT.mp3")
+    playsound.playsound("RESOURCES\YAG_QUIT.mp3")
     root.quit()
+    messagebox.showerror("showerror", "You are gay")
 
 def quit_window(icon, item):
     icon.stop()
@@ -29,7 +32,7 @@ def show_window(icon, item):
 
 def hide_window():
     root.withdraw()
-    image=Image.open("IKONA.ico")
+    image=Image.open("RESOURCES\IKONA.ico")
     menu=(item("Odejít", quit_window), item("Nemohl bys mi ho ukázat?", show_window))
     icon=pystray.Icon("Simon", image, "Simon is watchin' you", menu)
     icon.run()
@@ -37,7 +40,7 @@ def hide_window():
 #POZADÍ
 simon_canvas = Canvas(root)
 simon_canvas.place(height=707, width=903)
-simon_canvas.create_image(440,350, image = simon_bg, anchor = CENTER)
+simon_canvas.create_image(440,350, image = current_bg, anchor = CENTER)
 
 #ŠTÍTKY
 simon_label_jmeno = Label(simon_canvas, text="Simon Kaggwa Njala", bg="#A08977")
