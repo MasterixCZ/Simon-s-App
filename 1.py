@@ -5,24 +5,27 @@ from PIL import ImageTk, Image
 import playsound
 import pystray
 from pystray import MenuItem as item
+import webbrowser
 
 #ROOT
 root = Tk()
 root.title("Simon's App")
 root.geometry("903x707")
 root.iconbitmap(default='RESOURCES\IKONA.ico')
+root.counter = 0
 
 #DEFINICE
 current_bg = ImageTk.PhotoImage(Image.open("RESOURCES\simon.png"))
 
 def WAYG():
     playsound.playsound("gaeFUCK.mp3")
-        
+
 def YAG_QUIT():
     playsound.playsound("RESOURCES\YAG_QUIT.mp3")
     root.quit()
     messagebox.showerror("Simon says:", "You are gay")
 
+#SYS_TRAY
 def quit_window(icon, item):
     icon.stop()
     root.destroy()
@@ -37,10 +40,17 @@ def hide_window():
     menu=(item("Odejít", quit_window), item("Ukázat", show_window))
     icon=pystray.Icon("Simon", image, "Simon is watchin' you", menu)
     icon.run()
+#SYS_TRAY
 
 def verze():
-    messagebox.showinfo("Verze:", "A-0.0.7")
+    messagebox.showinfo("Verze:", "A-0.0.8")
+    root.counter += 1
+    if (root.counter == 10):
+        webbrowser.open('https://youtu.be/79FhEhWGXjw')
+    else:
+        pass
 
+    
 #POZADÍ
 simon_canvas = Canvas(root)
 simon_canvas.place(height=707, width=903)
@@ -56,8 +66,10 @@ seznamhlasek.place(x=20, y=10)
 #TLAČÍTKA
 gae_tl = Button(simon_canvas, text="Why are you gae?", command=WAYG)
 gae_tl.place(x=20,y=50)
+
 odejít = Button(simon_canvas, text="Odejít (Být gae)", command = YAG_QUIT)
 odejít.place(x=800,y=670)
+
 verze = Button(simon_canvas, text="Verze", command=verze)
 verze.place(x=855, y=10)
 
