@@ -10,6 +10,7 @@ from pystray import MenuItem as item
 root = Tk()
 root.title("Simon's App")
 root.geometry("903x707")
+root.iconbitmap(default='RESOURCES\IKONA.ico')
 
 #DEFINICE
 current_bg = ImageTk.PhotoImage(Image.open("RESOURCES\simon.png"))
@@ -20,7 +21,7 @@ def WAYG():
 def YAG_QUIT():
     playsound.playsound("RESOURCES\YAG_QUIT.mp3")
     root.quit()
-    messagebox.showerror("showerror", "You are gay")
+    messagebox.showerror("Simon says:", "You are gay")
 
 def quit_window(icon, item):
     icon.stop()
@@ -33,7 +34,7 @@ def show_window(icon, item):
 def hide_window():
     root.withdraw()
     image=Image.open("RESOURCES\IKONA.ico")
-    menu=(item("Odejít", quit_window), item("Nemohl bys mi ho ukázat?", show_window))
+    menu=(item("Odejít", quit_window), item("Ukázat", show_window))
     icon=pystray.Icon("Simon", image, "Simon is watchin' you", menu)
     icon.run()
 
