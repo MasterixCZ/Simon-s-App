@@ -38,6 +38,9 @@ def hide_window():
     icon=pystray.Icon("Simon", image, "Simon is watchin' you", menu)
     icon.run()
 
+def verze():
+    messagebox.showinfo("Verze:", "A-0.0.7")
+
 #POZADÍ
 simon_canvas = Canvas(root)
 simon_canvas.place(height=707, width=903)
@@ -55,6 +58,8 @@ gae_tl = Button(simon_canvas, text="Why are you gae?", command=WAYG)
 gae_tl.place(x=20,y=50)
 odejít = Button(simon_canvas, text="Odejít (Být gae)", command = YAG_QUIT)
 odejít.place(x=800,y=670)
+verze = Button(simon_canvas, text="Verze", command=verze)
+verze.place(x=855, y=10)
 
 root.protocol('WM_DELETE_WINDOW', hide_window)
 
