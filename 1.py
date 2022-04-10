@@ -6,6 +6,7 @@ import playsound
 import pystray
 from pystray import MenuItem as item
 import webbrowser
+import os
 
 #ROOT
 root = Tk()
@@ -16,6 +17,9 @@ root.counter = 0
 
 #DEFINICE
 current_bg = ImageTk.PhotoImage(Image.open("RESOURCES\simon.png"))
+jmeno_uzivatele = os.getlogin() 
+verzeText = "A-0.0.9\nPerson who is gae: " 
+c = verzeText + jmeno_uzivatele
 
 def WAYG():
     playsound.playsound("gaeFUCK.mp3")
@@ -43,7 +47,7 @@ def hide_window():
 #SYS_TRAY
 
 def verze():
-    messagebox.showinfo("Verze:", "A-0.0.8")
+    messagebox.showinfo("Info:", c)
     root.counter += 1
     if (root.counter == 10):
         webbrowser.open('https://youtu.be/79FhEhWGXjw')
@@ -70,8 +74,8 @@ gae_tl.place(x=20,y=50)
 odejít = Button(simon_canvas, text="Odejít (Být gae)", command = YAG_QUIT)
 odejít.place(x=800,y=670)
 
-verze = Button(simon_canvas, text="Verze", command=verze)
-verze.place(x=855, y=10)
+verze = Button(simon_canvas, text="Info", command=verze)
+verze.place(x=860, y=10)
 
 root.protocol('WM_DELETE_WINDOW', hide_window)
 
