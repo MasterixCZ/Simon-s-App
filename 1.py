@@ -2,7 +2,7 @@
 from tkinter import *
 from tkinter import messagebox
 from PIL import ImageTk, Image
-import playsound
+import playsound 
 import pystray
 from pystray import MenuItem as item
 import webbrowser
@@ -18,16 +18,25 @@ root.counter = 0
 #DEFINICE
 current_bg = ImageTk.PhotoImage(Image.open("RESOURCES\simon.png"))
 jmeno_uzivatele = os.getlogin() 
-verzeText = "A-0.0.9\nPerson who is gae: " 
+verzeText = "A-0.1.0\nPerson who is gae: " 
 c = verzeText + jmeno_uzivatele
 
 def WAYG():
-    playsound.playsound("gaeFUCK.mp3")
+    playsound.playsound("RESOURCES\gaeFUCK.mp3")
 
 def YAG_QUIT():
     playsound.playsound("RESOURCES\YAG_QUIT.mp3")
     root.quit()
     messagebox.showerror("Simon says:", "You are gay")
+
+def YAG():
+    playsound.playsound("RESOURCES\YAG_QUIT.mp3")
+
+def PJO():
+    playsound.playsound('RESOURCES\PJO.mp3')
+
+def LHDesc():
+    playsound.playsound("RESOURCES\LHDesc.mp3")
 
 #SYS_TRAY
 def quit_window(icon, item):
@@ -68,8 +77,17 @@ seznamhlasek = Label(simon_canvas, text="Seznam hlášek: ", bg="#8C4435")
 seznamhlasek.place(x=20, y=10)
 
 #TLAČÍTKA
-gae_tl = Button(simon_canvas, text="Why are you gae?", command=WAYG)
-gae_tl.place(x=20,y=50)
+why_gae_tl = Button(simon_canvas, text="Why are you gae?", command=WAYG)
+why_gae_tl.place(x=20,y=50)
+
+you_gae_tl = Button(simon_canvas, text="You are gae.", command=YAG)
+you_gae_tl.place(x=20, y=80)
+
+pjo_gae_tl = Button(simon_canvas, text="Pepe Julian Ozima", command=PJO)
+pjo_gae_tl.place(x=20,y=110)
+
+lhdesc_gae_tl = Button(simon_canvas, text="Lesbian? Homosexual?", command=LHDesc)
+lhdesc_gae_tl.place(x=20,y=140)
 
 odejít = Button(simon_canvas, text="Odejít (Být gae)", command = YAG_QUIT)
 odejít.place(x=800,y=670)
