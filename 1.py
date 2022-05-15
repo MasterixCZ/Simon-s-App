@@ -59,6 +59,7 @@ Možná budu mít příležitost se s jednou z těchto dívek sblížit...Dobře
 C-Co?Tohle...Co to je...?Ale ne...Ne...To nemůže být pravda.To se nemohlo stát.Co to je?Kdo jsem?Ať to přestane!PROSÍM AŤ TO PŘESTANE!sayorinatsukiyurimonika"""
 
 #PLUGINY
+import tkinter
 from tkinter import *
 from tkinter import messagebox
 from PIL import ImageTk, Image
@@ -68,6 +69,7 @@ from pystray import MenuItem as item
 import webbrowser
 import os
 import keyboard
+from random import choice
 
 #ROOT
 root = Tk()
@@ -80,7 +82,7 @@ root.counter1 = 0
 #DEFINICE
 current_bg = ImageTk.PhotoImage(Image.open("RESOURCES\simon.png"))
 jmeno_uzivatele = os.getlogin() 
-verzeText = "A-0.2.1\nPerson who is gae: " 
+verzeText = "A-0.2.3\nPerson who is gae: " 
 c = verzeText + jmeno_uzivatele
 
 def WAYG():
@@ -133,7 +135,11 @@ def verze():
     else:
         pass
 
-    
+funcs = [verze, hide_window, LHDesc, PJO, YAG1, YAG_QUIT, WAYG]
+ranButImg = PhotoImage(file = "RESOURCES\RanButImg.png")
+def funcsTest():
+    choice(funcs)()
+
 #POZADÍ
 simon_canvas = Canvas(root)
 simon_canvas.place(height=707, width=903)
@@ -164,6 +170,9 @@ odejít.place(x=770,y=673)
 
 verzeButt = Button(simon_canvas, text="Info {V}", command=verze)
 verzeButt.place(x=845, y=10)
+
+RanBut = Button(simon_canvas, image=ranButImg, borderwidth=0, command=funcsTest)
+RanBut.place(x = 0, y = 701)
 
 keyboard.add_hotkey('w', WAYG)
 keyboard.add_hotkey('y', YAG1)
